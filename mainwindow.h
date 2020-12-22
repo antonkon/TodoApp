@@ -34,5 +34,12 @@ private:
     TaskList tasks;
 
     int cur_row = -1;
+    Task *cur_task;
+
+    bool edit_state = false;
+
+    void clearForm();
+
+    void setCurTask(int row);
 };
 #endif // MAINWINDOW_H
