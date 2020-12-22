@@ -28,6 +28,8 @@ public:
 
     void setCompleted(int state);
 
+    void setImportance(int state);
+
 private:
     Ui::MainWindow *ui;
 

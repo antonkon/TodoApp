@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->butExit, &QPushButton::clicked, this, &MainWindow::close);
     connect(ui->checkDue, &QCheckBox::clicked, this, &MainWindow::setOverdue);
     connect(ui->checkCompl, &QCheckBox::clicked, this, &MainWindow::setCompleted);
+    connect(ui->checkImp, &QCheckBox::clicked, this, &MainWindow::setImportance);
     connect(ui->listTask, &QListWidget::currentRowChanged, this, &MainWindow::selectItem);
 
 
@@ -39,6 +40,7 @@ void MainWindow::selectItem(int row) {
     this->ui->textAbout->setText(cur_task->getText());
     this->ui->checkDue->setChecked(cur_task->getOverdue());
     this->ui->checkCompl->setChecked(cur_task->getCompleted());
+    this->ui->checkImp->setChecked(cur_task->getImportance());
 }
 
 void MainWindow::addTask() {
@@ -93,6 +95,12 @@ void MainWindow:: setCompleted(int state) {
     this->cur_task->setCompleted(state == 0 ? false : true);
 }
 
+void MainWindow::setImportance(int state) {
+    if (this->cur_row < 0) return;
+
+    this->cur_task->setImportance(state == 0 ? false : true);
+}
+
 void MainWindow::setCurTask(qint32 row) {
     this->cur_row = row;
 
@@ -107,4 +115,5 @@ void MainWindow::clearForm() {
     this->ui->textAbout->clear();
     this->ui->checkDue->setChecked(false);
     this->ui->checkCompl->setChecked(false);
+    this->ui->checkImp->setChecked(false);
 }
